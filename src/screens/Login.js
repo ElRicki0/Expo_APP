@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, Button, View, TouchableOpacity, TextInput, Image } from 'react-native';
 import Boton from '../components/Boton';
+import BotonNavigation from '../components/BotonNavigation';
 import * as Font from 'expo-font';
 
 export default function App({ navigation }) {
@@ -28,6 +29,11 @@ export default function App({ navigation }) {
     const RegistroScreen = async () => {
         navigation.navigate('Registro');
     };
+
+    const DashBoardScreen = async () => {
+        navigation.navigate('DashBoard');
+    }
+
     return (
         <View style={styles.container}>
             <Image source={require('./../img/logo.png')} />
@@ -54,12 +60,13 @@ export default function App({ navigation }) {
             </TouchableOpacity>
 
             <View style={styles.buttonContainer}>
-                <Button
-                    style={styles.button}
-                    title="Aceptar"
-                    color="#216608"
-                />
+
             </View>
+
+            <BotonNavigation
+                textoBoton='Aceptar'
+                accionBoton={DashBoardScreen}
+            />
 
             <Boton
                 textoBoton='No tengo una cuenta.'
