@@ -1,12 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ScrollView, TextInput, Button, Image, FlatList } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TextInput, TouchableOpacity, Image, FlatList, Modal, Button } from 'react-native';
 import Boton from '../components/Boton';
 import data from '../data/DashBoarddata';
+import data2 from '../data/DashBoarddata2';
 
 export default function App({ navigation }) {
 
+    const [modalVisible, setModalVisible] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(null);
+
+    const openModal = (item) => {
+        setSelectedItem(item);
+        setModalVisible(true);
+    };
+
+    const closeModal = () => {
+        setModalVisible(false);
+    };
+
     const informacion = data;
+    const informacion2 = data2;
 
     const LoginScreen = async () => {
         navigation.navigate('Login');
@@ -17,36 +31,62 @@ export default function App({ navigation }) {
         <ScrollView style={styles.body}>
             <View style={styles.container}>
                 <Image style={styles.imgContainer} source={require('./../img/logo.png')} />
+                <Text style={styles.title}>QUIROPRÁCTICA ESPECÍFICA</Text>
 
                 <View style={styles.MainContainer}>
 
                     <View style={styles.cardContainer}>
+                        <Text style={styles.subTitle}>Citas</Text>
                         <FlatList
                             data={informacion}
                             horizontal={true}
                             renderItem={({ item }) => (
-                                <View style={styles.cards}>
-                                    <Image source={item.src} style={styles.image} />
-                                    <Text style={styles.title} source={item.title} />
-                                </View>
+                                <TouchableOpacity onPress={() => openModal(item)}>
+                                    <View style={styles.cards}>
+                                        <Image source={item.src} style={styles.image} />
+                                        <Text style={styles.normalText}>{item.title}</Text>
+                                    </View>
+                                </TouchableOpacity>
                             )}
                             keyExtractor={(item) => item.id}
                         />
                     </View>
+                    <View style={styles.cardContainer}>
+                        <Text style={styles.subTitle}>Servicios</Text>
+                        <FlatList
+                            data={informacion2}
+                            horizontal={true}
+                            renderItem={({ item }) => (
+                                <View style={styles.cards}>
+                                    <Image source={item.src} style={styles.image} />
+                                    <Text style={styles.normalText}>{item.title}</Text>
+                                </View>
+                            )}
+                            keyExtractor={(item) => item.id}
+                        />
+                        <Modal
+                            visible={modalVisible}
+                            animationType="slide"
+                            transparent={true}
+                            onRequestClose={() => {
+                                setModalVisible(false);
+                            }}
+                        >
+                            <View style={styles.modalContainer}>
+                                <View style={styles.modalContent}>
+                                    <Text style={styles.subTitle}>Hola Mundo</Text>
+                                </View>
+                                <Button title="Cerrar" onPress={() => setModalVisible(false)} />
+                            </View>
+                        </Modal>
+
+
+
+                    </View>
                 </View>
 
-                <View style={styles.buttonContainer}>
-                    <Button
-                        style={styles.button}
-                        title="Aceptar"
-                        color="#216608"
-                    />
-                </View>
 
-                <Boton
-                    textoBoton='Ya tengo una cuenta.'
-                    accionBoton={LoginScreen}
-                />
+
 
                 <StatusBar style="auto" />
             </View>
@@ -60,6 +100,24 @@ const styles = StyleSheet.create({
         backgroundColor: 'black',
         alignItems: 'center',
     },
+
+    modalContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fondo semitransparente
+    },
+    modalContent: {
+        backgroundColor: 'white',
+        padding: 20,
+        borderRadius: 10,
+    },
+    subTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
+
     body: {
         backgroundColor: 'black',
     },
@@ -69,13 +127,19 @@ const styles = StyleSheet.create({
         marginRight: 5,
         marginTop: 5
     },
-    titleInputs: {
-        marginLeft: 6,
-        marginBottom: 5,
+    title: {
+        fontSize: 22,
+        fontFamily: 'Poppins-Thin',
+        textAlign: 'center',
         color: 'white',
-        fontSize: 16,
+        marginBottom: 40,
     },
-
+    subTitle: {
+        fontSize: 22,
+        textAlign: 'center',
+        color: '#216608',
+        marginBottom: 4,
+    },
     MainContainer: {
         width: '100%',
     },
@@ -104,13 +168,12 @@ const styles = StyleSheet.create({
         maxHeight: 180,
     },
     cards: {
-        backgroundColor: '#fff',
-        borderRadius: 8,
-        borderWidth: 1,
+        backgroundColor: '#0000',
+
         borderColor: '#ccc',
         padding: 10,
         marginBottom: 10,
-        marginHorizontal: 70,
+        marginHorizontal: 20,
         shadowColor: '#000',
         shadowOffset: {
             width: 0,
@@ -122,12 +185,15 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     image: {
-        width: 100,
-        height: 100,
+        borderRadius: 8,
+        borderWidth: 1,
+        width: 330,
+        height: 200,
         marginBottom: 10,
     },
-    title: {
+    normalText: {
         fontSize: 16,
         fontWeight: 'bold',
+        color: 'white'
     }
 });
