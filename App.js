@@ -10,6 +10,7 @@ import RegisterScreen from './src/screens/Registro.js';
 import DashBoardScreen from './src/screens/DashBoard.js';
 import CodigoScreen from './src/screens/Codigo.js';
 import CodigoRecScreen from './src/screens/CodigoRec.js';
+import BottonTab from './src/tabNavigator/BottonTab.js';
 
 export default function App() {
     const Stack = createNativeStackNavigator();

@@ -5,7 +5,7 @@ import Boton from '../components/Boton';
 import BotonNavigation from '../components/BotonNavigation';
 import * as Font from 'expo-font';
 
-export default function App({ navigation }) {
+export default function CodigoRec({ navigation }) {
     const [fontsLoaded, setFontsLoaded] = useState(false);
 
     useEffect(() => {
