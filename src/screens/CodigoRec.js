@@ -26,40 +26,30 @@ export default function App({ navigation }) {
         return (<View />);
     }
 
-    const RegistroScreen = async () => {
-        navigation.navigate('Registro');
+    const LoginScreen = async () => {
+        navigation.navigate('Login');
     };
 
-    const DashBoardScreen = async () => {
-        navigation.navigate('DashBoard');
-    }
-
-    const CodigoScreen = async()=>{
-        navigation.navigate('Codigo')
+    const RegistroScreen = async () => {
+        navigation.navigate('Registro');
     }
 
     return (
         <View style={styles.container}>
             <Image source={require('./../img/logo.png')} />
-            <Text style={styles.title}>QUIROPRACTICA ESPECÍFICA</Text>
+            <Text style={styles.title}>Ingrese Codigo</Text>
 
             <View style={styles.inputContainer}>
                 <TextInput
                     style={styles.input}
-                    placeholder="Correo Electronico"
+                    placeholder="Validar codigo"
                     placeholderTextColor="white"
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Contraseña"
-                    placeholderTextColor="white"
-                    secureTextEntry={true}
                 />
             </View>
 
-            <TouchableOpacity style={styles.forgotPasswordContainer} onPress={CodigoScreen}>
+            <TouchableOpacity style={styles.forgotPasswordContainer}>
                 <Text style={styles.forgotPassword}>
-                    Olvidaste tu contraseña?
+                    Volver enviar contraseña 
                 </Text>
             </TouchableOpacity>
 
@@ -69,12 +59,12 @@ export default function App({ navigation }) {
 
             <BotonNavigation
                 textoBoton='Aceptar'
-                accionBoton={DashBoardScreen}
+                accionBoton={RegistroScreen}
             />
 
             <Boton
-                textoBoton='No tengo una cuenta.'
-                accionBoton={RegistroScreen}
+                textoBoton='Regresar.'
+                accionBoton={LoginScreen}
             />
 
             <StatusBar style="auto" />

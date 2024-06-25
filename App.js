@@ -8,6 +8,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './src/screens/Login.js';
 import RegisterScreen from './src/screens/Registro.js';
 import DashBoardScreen from './src/screens/DashBoard.js';
+import CodigoScreen from './src/screens/Codigo.js';
+import CodigoRecScreen from './src/screens/CodigoRec.js';
 
 export default function App() {
     const Stack = createNativeStackNavigator();
@@ -22,6 +24,8 @@ export default function App() {
                 <Stack.Screen name="Login" component={LoginScreen} />
                 <Stack.Screen name="Registro" component={RegisterScreen} />
                 <Stack.Screen name="DashBoard" component={DashBoardScreen} />
+                <Stack.Screen name="Codigo" component={CodigoScreen} />
+                <Stack.Screen name="CodigoRec" component={CodigoRecScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );

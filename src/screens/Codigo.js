@@ -26,22 +26,18 @@ export default function App({ navigation }) {
         return (<View />);
     }
 
-    const RegistroScreen = async () => {
-        navigation.navigate('Registro');
+    const LoginScreen = async () => {
+        navigation.navigate('Login');
     };
 
-    const DashBoardScreen = async () => {
-        navigation.navigate('DashBoard');
-    }
-
-    const CodigoScreen = async()=>{
-        navigation.navigate('Codigo')
+    const CodigoRecScreen = async () => {
+        navigation.navigate('CodigoRec');
     }
 
     return (
         <View style={styles.container}>
             <Image source={require('./../img/logo.png')} />
-            <Text style={styles.title}>QUIROPRACTICA ESPECÍFICA</Text>
+            <Text style={styles.title}>RECUPERACIÓN DE CONTRASEÑA</Text>
 
             <View style={styles.inputContainer}>
                 <TextInput
@@ -49,19 +45,7 @@ export default function App({ navigation }) {
                     placeholder="Correo Electronico"
                     placeholderTextColor="white"
                 />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Contraseña"
-                    placeholderTextColor="white"
-                    secureTextEntry={true}
-                />
             </View>
-
-            <TouchableOpacity style={styles.forgotPasswordContainer} onPress={CodigoScreen}>
-                <Text style={styles.forgotPassword}>
-                    Olvidaste tu contraseña?
-                </Text>
-            </TouchableOpacity>
 
             <View style={styles.buttonContainer}>
 
@@ -69,12 +53,12 @@ export default function App({ navigation }) {
 
             <BotonNavigation
                 textoBoton='Aceptar'
-                accionBoton={DashBoardScreen}
+                accionBoton={CodigoRecScreen}
             />
 
             <Boton
-                textoBoton='No tengo una cuenta.'
-                accionBoton={RegistroScreen}
+                textoBoton='Regresar.'
+                accionBoton={LoginScreen}
             />
 
             <StatusBar style="auto" />
