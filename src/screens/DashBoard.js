@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ScrollView, TextInput, TouchableOpacity, Image, FlatList, Modal, Button } from 'react-native';
-import ButtonTab from '../tabNavigator/BottonTab';
+// import ButtonTab from '../tabNavigator/BottonTab';
 import data from '../data/DashBoarddata';
 import data2 from '../data/DashBoarddata2';
 
@@ -15,7 +15,7 @@ export default function DashBoard({ navigation }) {
 
     
     const openModal2 = (item) => {
-        setSelectedItem2(item);
+        setSelectedItem2(item); 
         setModalVisible2(true);
     };
 
@@ -154,7 +154,7 @@ export default function DashBoard({ navigation }) {
 
 
                 <StatusBar style="auto" />
-            </View>r
+            </View>
         </ScrollView>
     );
 }
