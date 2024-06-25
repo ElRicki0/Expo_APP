@@ -9,7 +9,26 @@ export default function App({ navigation }) {
 
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
+    const [modalVisible2, setModalVisible2] = useState(false);
+    const [selectedItem2, setSelectedItem2] = useState(null);
 
+
+    
+    const openModal2 = (item) => {
+        setSelectedItem2(item);
+        setModalVisible2(true);
+    };
+
+    const closeModal2 = () => {
+        setModalVisible2(false);
+    };
+    const cerrarYabrir = ()=>{
+        setModalVisible(false);
+        setModalVisible2(true);
+
+    }
+
+    
     const openModal = (item) => {
         setSelectedItem(item);
         setModalVisible(true);
@@ -36,22 +55,6 @@ export default function App({ navigation }) {
                 <View style={styles.MainContainer}>
 
                     <View style={styles.cardContainer}>
-                        <Text style={styles.subTitle}>Citas</Text>
-                        <FlatList
-                            data={informacion}
-                            horizontal={true}
-                            renderItem={({ item }) => (
-                                <TouchableOpacity onPress={() => openModal(item)}>
-                                    <View style={styles.cards}>
-                                        <Image source={item.src} style={styles.image} />
-                                        <Text style={styles.normalText}>{item.title}</Text>
-                                    </View>
-                                </TouchableOpacity>
-                            )}
-                            keyExtractor={(item) => item.id}
-                        />
-                    </View>
-                    <View style={styles.cardContainer}>
                         <Text style={styles.subTitle}>Servicios</Text>
                         <FlatList
                             data={informacion2}
@@ -64,6 +67,24 @@ export default function App({ navigation }) {
                             )}
                             keyExtractor={(item) => item.id}
                         />
+
+                        <View style={styles.cardContainer}>
+                            <Text style={styles.subTitle}>Citas</Text>
+                            <FlatList
+                                data={informacion}
+                                horizontal={true}
+                                renderItem={({ item }) => (
+                                    <TouchableOpacity onPress={() => openModal(item)}>
+                                        <View style={styles.cards}>
+                                            <Image source={item.src} style={styles.image} />
+                                            <Text style={styles.normalText}>{item.title}</Text>
+                                        </View>
+                                    </TouchableOpacity>
+                                )}
+                                keyExtractor={(item) => item.id}
+                            />
+                        </View>
+
                         <Modal
                             visible={modalVisible}
                             animationType="slide"
@@ -74,9 +95,53 @@ export default function App({ navigation }) {
                         >
                             <View style={styles.modalContainer}>
                                 <View style={styles.modalContent}>
-                                    <Text style={styles.subTitle}>Hola Mundo</Text>
+                                    {selectedItem && (
+                                        <>
+                                            <Text style={styles.modalTitle}>{selectedItem.title}</Text>
+                                            <Image source={selectedItem.src} style={styles.modalImage} />
+                                            <View style={styles.modalHorizontal} >
+                                                <Text style={styles.modalText}>Seleccione Fecha:   </Text>
+                                                <Text style={styles.modalText}>20/20/20</Text>
+                                            </View>
+                                            <View style={styles.modalHorizontal} >
+                                                <Text style={styles.modalText}>   Seleccione Hora:    </Text>
+                                                <Text style={styles.modalText}>5:00   pm</Text>
+                                            </View>
+                                            
+                                            <Button title="Realizar cita" onPress={cerrarYabrir} color="#216608" />
+                                        </>
+                                    )}
                                 </View>
-                                <Button title="Cerrar" onPress={() => setModalVisible(false)} />
+                            </View>
+                        </Modal>
+
+                        <Modal
+                            visible={modalVisible2}
+                            animationType="slide"
+                            transparent={true}
+                            onRequestClose={() => {
+                                setModalVisible(false);
+                            }}
+                        >
+                            <View style={styles.modalContainer}>
+                                <View style={styles.modalContent}>
+                                    {selectedItem && (
+                                        <>
+                                            <Text style={styles.modalTitle}>{selectedItem.title}</Text>
+                                            <Image source={selectedItem.src} style={styles.modalImage} />
+                                            <View style={styles.modalHorizontal} >
+                                                <Text style={styles.modalText}>Fecha:   </Text>
+                                                <Text style={styles.modalText}>20/20/20</Text>
+                                            </View>
+                                            <View style={styles.modalHorizontal} >
+                                                <Text style={styles.modalText}>   Hora:    </Text>
+                                                <Text style={styles.modalText}>5:00   pm</Text>
+                                            </View>
+                                            
+                                            <Button title="Cita realizada" onPress={closeModal2} color="#216608" />
+                                        </>
+                                    )}
+                                </View>
                             </View>
                         </Modal>
 
@@ -100,7 +165,11 @@ const styles = StyleSheet.create({
         backgroundColor: 'black',
         alignItems: 'center',
     },
-
+    modalHorizontal: {
+        flexDirection: 'row', // Establece la dirección en horizontal
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     modalContainer: {
         flex: 1,
         justifyContent: 'center',
@@ -108,9 +177,36 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fondo semitransparente
     },
     modalContent: {
-        backgroundColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'black',
         padding: 20,
         borderRadius: 10,
+    },
+    modalTitle: {
+        fontWeight: 'bold',
+        color: 'white',
+        marginBottom :15
+    },
+    modalText: {
+        color: 'white',
+        marginBottom :10
+    },
+    modalInformation:{
+        color: 'white',
+        backgroundColor:'67F335',
+        padding: 15,
+    },
+    modalImage: {
+        borderRadius: 8,
+        borderWidth: 1,
+        marginBottom: 20,
+        width: 150,
+        height: 150
+    }
+    ,
+    modalButton: {
+        Color: '#216608',
     },
     subTitle: {
         fontSize: 20,
