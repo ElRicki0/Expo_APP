@@ -5,7 +5,7 @@ import Boton from '../components/Boton';
 import BotonNavigation from '../components/BotonNavigation';
 import * as Font from 'expo-font';
 
-export default function CodigoRec({ navigation }) {
+export default function RecContrasenia({ navigation }) {
     const [fontsLoaded, setFontsLoaded] = useState(false);
 
     useEffect(() => {
@@ -30,28 +30,29 @@ export default function CodigoRec({ navigation }) {
         navigation.navigate('Login');
     };
 
-    const RegistroScreen = async () => {
-        navigation.navigate('ActContrasenia');
+    const CodigoRecScreen = async () => {
+        navigation.navigate('Login');
     }
 
     return (
         <View style={styles.container}>
             <Image source={require('./../img/logo.png')} />
-            <Text style={styles.title}>Ingrese Codigo</Text>
+            <Text style={styles.title}>RECUPERACIÓN DE CONTRASEÑA</Text>
 
             <View style={styles.inputContainer}>
                 <TextInput
                     style={styles.input}
-                    placeholder="Validar codigo"
+                    placeholder="Nueva contraseña"
                     placeholderTextColor="white"
+                    secureTextEntry={true}
+                />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Repetir contraseña"
+                    placeholderTextColor="white"
+                    secureTextEntry={true}
                 />
             </View>
-
-            <TouchableOpacity style={styles.forgotPasswordContainer}>
-                <Text style={styles.forgotPassword}>
-                    Volver enviar contraseña 
-                </Text>
-            </TouchableOpacity>
 
             <View style={styles.buttonContainer}>
 
@@ -59,7 +60,7 @@ export default function CodigoRec({ navigation }) {
 
             <BotonNavigation
                 textoBoton='Aceptar'
-                accionBoton={RegistroScreen}
+                accionBoton={CodigoRecScreen}
             />
 
             <Boton

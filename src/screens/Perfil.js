@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import Boton from '../components/Boton';
 
-export default function Perfil() {
+export default function Perfil({navigation}) {
 
     const LoginScreen = async () => {
         navigation.navigate('Login');

@@ -10,9 +10,9 @@ const TabNavigator = () => {
         <Tab.Navigator
             screenOptions={({ route }) => ({
                 headerShown: false, // Oculta el header
-                tabBarActiveTintColor: '#32CF0C', // Color de los íconos activos
-                tabBarInactiveTintColor: '#47A330', // Color de los íconos inactivos
-                tabBarStyle: { backgroundColor: '#575757', height: 60, borderTopWidth: 0 }, // Establece el color gris de fondo y altura de la barra de pestañas
+                tabBarActiveTintColor: '#FFFFFF', // Color de los íconos activos
+                tabBarInactiveTintColor: '#ABABAB', // Color de los íconos inactivos
+                tabBarStyle: { backgroundColor: '#000000', height: 60, borderTopWidth: 0 }, // Establece el color gris de fondo y altura de la barra de pestañas
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
 
@@ -32,7 +32,7 @@ const TabNavigator = () => {
                 options={{
                     title: 'Inicio',
                     tabBarIcon: ({ focused, color, size }) => (
-                        <Ionicons name={focused ? 'home' : 'home-outline'} size={size} color="#000000" />
+                        <Ionicons name={focused ? 'home' : 'home-outline'} size={size} color="#ffffff" />
                     ),
                 }}
             />
@@ -43,7 +43,7 @@ const TabNavigator = () => {
                 options={{
                     title: 'Perfil',
                     tabBarIcon: ({ focused, color, size }) => (
-                        <Ionicons name={focused ? 'menu' : 'menu-outline'} size={size} color="#000000" />
+                        <Ionicons name={focused ? 'menu' : 'menu-outline'} size={size} color="#ffffff" />
                     ),
                 }}
             />
