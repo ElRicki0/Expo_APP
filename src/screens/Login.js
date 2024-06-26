@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, Button, View, TouchableOpacity, TextInput, Image } from 'react-native';
 import Boton from '../components/Boton';
 import BotonNavigation from '../components/BotonNavigation';
+import DashBoard from './DashBoard';
 import * as Font from 'expo-font';
 
 export default function App({ navigation }) {
@@ -31,7 +32,7 @@ export default function App({ navigation }) {
     };
 
     const DashBoardScreen = async () => {
-        navigation.navigate('DashBoard');
+        navigation.navigate('TabNavigator');
     }
 
     const CodigoScreen = async()=>{

@@ -13,22 +13,22 @@ export default function DashBoard({ navigation }) {
     const [selectedItem2, setSelectedItem2] = useState(null);
 
 
-    
+
     const openModal2 = (item) => {
-        setSelectedItem2(item); 
+        setSelectedItem2(item);
         setModalVisible2(true);
     };
 
     const closeModal2 = () => {
         setModalVisible2(false);
     };
-    const cerrarYabrir = ()=>{
+    const cerrarYabrir = () => {
         setModalVisible(false);
         setModalVisible2(true);
 
     }
 
-    
+
     const openModal = (item) => {
         setSelectedItem(item);
         setModalVisible(true);
@@ -107,7 +107,7 @@ export default function DashBoard({ navigation }) {
                                                 <Text style={styles.modalText}>   Seleccione Hora:    </Text>
                                                 <Text style={styles.modalText}>5:00   pm</Text>
                                             </View>
-                                            
+
                                             <Button title="Realizar cita" onPress={cerrarYabrir} color="#216608" />
                                         </>
                                     )}
@@ -137,22 +137,15 @@ export default function DashBoard({ navigation }) {
                                                 <Text style={styles.modalText}>   Hora:    </Text>
                                                 <Text style={styles.modalText}>5:00   pm</Text>
                                             </View>
-                                            
+
                                             <Button title="Cita realizada" onPress={closeModal2} color="#216608" />
                                         </>
                                     )}
                                 </View>
                             </View>
                         </Modal>
-
-
-
                     </View>
                 </View>
-
-
-
-
                 <StatusBar style="auto" />
             </View>
         </ScrollView>
@@ -186,15 +179,15 @@ const styles = StyleSheet.create({
     modalTitle: {
         fontWeight: 'bold',
         color: 'white',
-        marginBottom :15
+        marginBottom: 15
     },
     modalText: {
         color: 'white',
-        marginBottom :10
+        marginBottom: 10
     },
-    modalInformation:{
+    modalInformation: {
         color: 'white',
-        backgroundColor:'67F335',
+        backgroundColor: '67F335',
         padding: 15,
     },
     modalImage: {
