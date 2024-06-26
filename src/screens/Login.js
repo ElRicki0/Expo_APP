@@ -6,7 +6,7 @@ import BotonNavigation from '../components/BotonNavigation';
 import DashBoard from './DashBoard';
 import * as Font from 'expo-font';
 
-export default function App({ navigation }) {
+export default function Login({ navigation }) {
     const [fontsLoaded, setFontsLoaded] = useState(false);
 
     useEffect(() => {
@@ -27,8 +27,8 @@ export default function App({ navigation }) {
         return (<View />);
     }
 
-    const RegistroScreen = async () => {
-        navigation.navigate('Registro');
+    const LoginScreen = async () => {
+        navigation.navigate('Login');
     };
 
     const DashBoardScreen = async () => {
@@ -75,7 +75,7 @@ export default function App({ navigation }) {
 
             <Boton
                 textoBoton='No tengo una cuenta.'
-                accionBoton={RegistroScreen}
+                accionBoton={LoginScreen}
             />
 
             <StatusBar style="auto" />

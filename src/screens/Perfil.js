@@ -1,8 +1,13 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import Boton from '../components/Boton';
 
-export default function Codigo() {
+export default function Perfil() {
+
+    const LoginScreen = async () => {
+        navigation.navigate('Login');
+    };
 
     return (
         <View style={styles.container}>
@@ -24,9 +29,10 @@ export default function Codigo() {
                     <TouchableOpacity style={styles.button}>
                         <Text style={styles.buttonText}>Editar</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.button}>
-                        <Text style={styles.buttonText}>Cerrar Sesión</Text>
-                    </TouchableOpacity>
+                    <Boton
+                        textoBoton='Cerrar cuenta.'
+                        accionBoton={LoginScreen}
+                    />
                 </View>
             </View>
         </View>
