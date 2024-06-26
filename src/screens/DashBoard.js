@@ -51,7 +51,7 @@ export default function DashBoard({ navigation }) {
             <View style={styles.container}>
                 <Image style={styles.imgContainer} source={require('./../img/logo.png')} />
                 <Text style={styles.title}>QUIROPRÁCTICA ESPECÍFICA</Text>
-
+                //Contenedor para tarjeta de servicios como modal
                 <View style={styles.MainContainer}>
                     <View style={styles.cardContainer}>
                         <Text style={styles.subTitle}>Servicios</Text>
@@ -59,8 +59,10 @@ export default function DashBoard({ navigation }) {
                             data={informacion2}
                             horizontal={true}
                             renderItem={({ item }) => (
+                                 //redirigir hacia modal de servicios
                                 <TouchableOpacity onPress={() => openModal(item)}>
                                 <View style={styles.cards}>
+                                    //redirigir hacia modal de servicios
                                     <Image source={item.src} style={styles.image} />
                                     <Text style={styles.normalText}>{item.title}</Text>
                                 </View>
@@ -68,13 +70,14 @@ export default function DashBoard({ navigation }) {
                             )}
                             keyExtractor={(item) => item.id}
                         />
-
+                //Contenedor para tarjeta de citas como modal
                         <View style={styles.cardContainer}>
                             <Text style={styles.subTitle}>Citas</Text>
                             <FlatList
                                 data={informacion}
                                 horizontal={true}
                                 renderItem={({ item }) => (
+                                 //redirigir hacia modal de citas
                                     <TouchableOpacity onPress={() => openModal(item)}>
                                         <View style={styles.cards}>
                                             <Image source={item.src} style={styles.image} />
@@ -85,7 +88,7 @@ export default function DashBoard({ navigation }) {
                                 keyExtractor={(item) => item.id}
                             />
                         </View>
-
+            //modal de servicios su descripcion para realizar cita
                         <Modal
                             visible={modalVisible}
                             animationType="slide"
@@ -115,6 +118,8 @@ export default function DashBoard({ navigation }) {
                             </View>
                         </Modal>
 
+
+                        //modal de cita aqui aparece la informacion de cita a realizar con fecha y hora
                         <Modal
                             visible={modalVisible}
                             animationType="slide"
@@ -144,7 +149,7 @@ export default function DashBoard({ navigation }) {
                                 </View>
                             </View>
                         </Modal>
-
+                        //modal de cita aqui aparece la informacion de la cita creada con exito
                         <Modal
                             visible={modalVisible2}
                             animationType="slide"
@@ -182,12 +187,16 @@ export default function DashBoard({ navigation }) {
     );
 }
 
+
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'black',
         alignItems: 'center',
     },
+
+    
     modalHorizontal: {
         flexDirection: 'row', // Establece la dirección en horizontal
         justifyContent: 'center',
