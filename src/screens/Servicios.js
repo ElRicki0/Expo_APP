@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ScrollView, TextInput, TouchableOpacity, Image, FlatList, Modal, Button } from 'react-native';
 // import ButtonTab from '../tabNavigator/BottonTab';
-import data from '../data/DashBoarddata';
 import servicio1 from '../data/dataservicio';
 
 const datoservicio = servicio1;
@@ -26,26 +25,30 @@ const LoginScreen = async () => {
                 <Text style={styles.text}>Servicio de scoliosis</Text>
             </View>
 
-            <View style={styles.cardContainer}>
-                        <Text style={styles.subTitle}>Servicios</Text>
-                        <FlatList
-                            servicio1={datoservicio}
-                            showsVerticalScrollIndicator={true}
-                            renderItem={({ item }) => (
-                                <View style={styles.cards}>
-                                    <Image source={item.src} style={styles.image} />
-                                    <Text style={styles.normalText}>{item.title}</Text>
-                                </View>
-                            )}
-                            keyExtractor={(item) => item.id}
-                        />
-                         </View>
+            return (
+        <View style={styles.container}>
+            <Text style={styles.subTitle}>Servicios</Text>
+            <FlatList
+                data={datoservicio}
+                showsVerticalScrollIndicator={true}
+                renderItem={({ item }) => (
+                    <TouchableOpacity style={styles.cards} onPress={navigateToServicio}>
+                        <Image source={item.src} style={styles.image} />
+                        <Text style={styles.normalText}>{item.title}</Text>
+                    </TouchableOpacity>
+                )}
+                keyExtractor={(item) => item.id}
+            />
+        </View>
+    );
+
 
             <View style={styles.buttonContainer}>
-                <Boton
-                    textoBoton='Realizar cita.'
-                    accionBoton={LoginScreen}
-                />
+            <TouchableOpacity style={styles.forgotPasswordContainer} onPress={CitaScreen}>
+                <Text style={styles.forgotPassword}>
+                    Realizar cita
+                </Text>
+            </TouchableOpacity>
             </View>
         </View>
     </View>

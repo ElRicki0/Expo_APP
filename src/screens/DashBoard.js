@@ -53,17 +53,18 @@ export default function DashBoard({ navigation }) {
                 <Text style={styles.title}>QUIROPRÁCTICA ESPECÍFICA</Text>
 
                 <View style={styles.MainContainer}>
-
                     <View style={styles.cardContainer}>
                         <Text style={styles.subTitle}>Servicios</Text>
                         <FlatList
                             data={informacion2}
                             horizontal={true}
                             renderItem={({ item }) => (
+                                <TouchableOpacity onPress={() => openModal(item)}>
                                 <View style={styles.cards}>
                                     <Image source={item.src} style={styles.image} />
                                     <Text style={styles.normalText}>{item.title}</Text>
                                 </View>
+                                </TouchableOpacity>
                             )}
                             keyExtractor={(item) => item.id}
                         />
@@ -84,6 +85,35 @@ export default function DashBoard({ navigation }) {
                                 keyExtractor={(item) => item.id}
                             />
                         </View>
+
+                        <Modal
+                            visible={modalVisible}
+                            animationType="slide"
+                            transparent={true}
+                            onRequestClose={() => {
+                                setModalServicio(false);
+                            }}
+                        >
+                        <View style={styles.modalContainer}>
+                                <View style={styles.modalContent}>
+                                    {selectedItem && (
+                                        <>
+                                            <Text style={styles.modalTitle}>{selectedItem.title}</Text>
+                                            <Image source={selectedItem.src} style={styles.modalImage} />
+                                            <View style={styles.modalHorizontal} >
+                                                <Text style={styles.modalText}>El tratamiento más común es la manipulación que el quiropráctico hace con la mano. Consiste en mover 
+                                                    una articulación de la columna vertebral hasta el máximo de su rango, seguido de una compresión ligera. Esto con frecuencia se 
+                                                    llama "ajuste". Esto realinea los huesos de la columna vertebral para situarlos en una mejor posición. </Text>
+                                                <Text style={styles.modalText}>Beneficios</Text>
+                                                <Text style={styles.modalText}>Tratamiento de problemas de salud que afectan los nervios, músculos, huesos y articulaciones: 
+                                                    La quiropráctica es una forma de atención médica que trata problemas.</Text>
+                                            </View>
+                                            <Button title="Realizar cita" onPress={cerrarYabrir} color="#216608" />
+                                        </>
+                                    )}
+                                </View>
+                            </View>
+                        </Modal>
 
                         <Modal
                             visible={modalVisible}
